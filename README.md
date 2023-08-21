@@ -11,3 +11,12 @@
 - flex 실습
   + justify-content `008-flex.html`
   + align-items `009-flex.html`
+### board
+#### html
+- 로그인 `login.html`
+- 회원가입 `join.html`
+- 글 조회 `view.html`
+#### css
+- 공통 `common.css`
+- 로그인 & 회원가입 `login-join.css`
+- 글 조회 `view.css`
