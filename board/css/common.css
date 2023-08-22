@@ -14,5 +14,55 @@
 
 body {
   font-family: 'NanumSquareNeo-Variable', sans-serif;
-  padding: 1rem 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+textarea,
+select,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 0 0.2rem;
+  height: 2rem;
+  flex-grow: 1;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 1px solid #3b55ff;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  background: #eee;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button:hover {
+  background: #ccc;
+}
+
+.main-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.main-desc {
+  color: #777;
+  margin-bottom: 1rem;
 }

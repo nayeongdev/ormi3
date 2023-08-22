@@ -1,0 +1,69 @@
+.main {
+  width: 800px;
+  margin: auto;
+}
+
+.board-table {
+  margin: 1rem 0;
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 2px solid #000;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.board-table th {
+  background-color: #eee;
+}
+
+.board-table th,
+.board-table td {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.board-table th {
+  padding: 0.5rem;
+}
+
+.board-table td {
+  padding: 1rem 0.5rem;
+}
+
+.board-table a {
+  text-decoration: none;
+  font-weight: bold;
+  color: inherit;
+}
+
+.tal {
+  text-align: left;
+}
+
+.board-table select {
+  width: 10rem;
+}
+
+.board-table input[type="text"],
+.board-table textarea {
+  width: 100%;
+}
+
+.board-table textarea {
+  height: 12rem;
+}
+
+.btn-group a {
+  padding: 0.5rem 1rem;
+  background: #eee;
+}
+
+.btn-group a:hover {
+  background: #ddd;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.2rem;
+}

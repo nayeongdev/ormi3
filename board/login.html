@@ -6,11 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>로그인</title>
   <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/login-join.css">
 </head>
 
 <body>
-  <main class="main">
+  <header class="layout-header">
+    <h1>HTML/CSS 실습</h1>
+    <ul class="menu">
+      <li><a href="./chat.html">채팅</a></li>
+      <li><a href="./login.html">로그인</a></li>
+      <li><a href="./join.html">회원가입</a></li>
+      <li><button type="button">로그아웃</button></li>
+    </ul>
+  </header>
+  <main class="layout-main main">
     <h2 class="main-title">로그인</h2>
     <p class="main-desc">아이디와 비밀번호를 입력하고 로그인하세요</p>
     <form class="main-form" method="POST">
@@ -29,6 +39,9 @@
       <button class="btn" type="submit">로그인</button>
     </form>
   </main>
+  <footer class="layout-footer">
+    <p>Copyright 2023 All rights reserved.</p>
+  </footer>
 </body>
 
 </html>
