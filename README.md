@@ -20,3 +20,9 @@
 - 공통 `common.css`
 - 로그인 & 회원가입 `login-join.css`
 - 글 조회 `view.css`
+## 230823
+### javascript
+- 문자열 메소드 `stringMethod.js`
+- 숫자 메소드 `numberMethod.js`
+### 스터디(개별)
+- 원시타입의 특징 `primitiveType.py`
