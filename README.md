@@ -29,3 +29,6 @@
 ## 230824
 - reduce 메소드로 홀수만 더하기 `reduceAddOdd.js`
 - reduce 메소드에 초기값이 없다면? `reduceInitialValue.js`
+## 230825
+- 배열 값의 평균 구하기 `arrayAvg.js`
+- 배열 값의 최대 구하기 `arrayMax.js`
