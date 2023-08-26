@@ -26,3 +26,6 @@
 - 숫자 메소드 `numberMethod.js`
 ### 스터디(개별)
 - 원시타입의 특징 `primitiveType.py`
+## 230824
+- reduce 메소드로 홀수만 더하기 `reduceAddOdd.js`
+- reduce 메소드에 초기값이 없다면? `reduceInitialValue.js`
