@@ -32,3 +32,6 @@
 ## 230825
 - 배열 값의 평균 구하기 `arrayAvg.js`
 - 배열 값의 최대 구하기 `arrayMax.js`
+## 230828
+- localStorage를 이용한 todo `localStorage`
+- 비동기 통신을 통해 데이터 받아오기 `shoppingmall`
