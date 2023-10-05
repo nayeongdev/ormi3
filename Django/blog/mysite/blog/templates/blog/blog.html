@@ -1,0 +1,38 @@
+blog
+
+<!-- {{db}} -->
+
+<h2>for item in db.items</h2>
+{%for item in db.items %}
+{{item}}
+{{item.0}}
+{% endfor %}
+
+<h2>for key, value in db.items</h2>
+{%for key, value in db.items %}
+{{key}}
+{{value}}
+{% endfor %}
+
+<h2>if문 실행이 될까요?</h2>
+{% if 10 == 15 %}
+<p>네</p>
+{% endif %}
+
+<h2>표</h2>
+<table>
+  <tr>
+    <th>제목</th>
+    <th>내용</th>
+    <th>이미지</th>
+  </tr>
+  {% for key, value in db.items%}
+  {% if value.title %}
+  <tr>
+    <td>{{value.title}}</td>
+    <td>{{value.content}}</td>
+    <td><img width="100px" src="{{value.img}}"></td>
+  </tr>
+  {% endif %}
+  {% endfor %}
+</table>

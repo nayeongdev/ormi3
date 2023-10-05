@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>post</title>
+</head>
+
+
+<body>
+  <h1>{{post.title}}</h1>
+  <p>{{post.content}}</p>
+  <img src="{{post.img}}" alt="">
+
+  <!-- django에서는 아래와 같이 잘 사용않는 패턴이다 -->
+  <!-- <a href="../">홈으로 가기</a>
+  <a href="../../">홈으로 가기</a>
+  <a href="http://127.0.0.1:8000/blog/">홈으로 가기</a>
+  <a href="http://127.0.0.1:8000/blog/1/../../">홈으로 가기</a> -->
+
+  <a href="{% url 'blog' %}">홈으로 가기</a> <!-- name="blog"가 되어있어야함 -->
+
+  <script>
+    let imgSrc = "{{ post.img }}"
+  </script>
+</body>
+
+</html>
