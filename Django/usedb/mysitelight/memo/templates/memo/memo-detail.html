@@ -1,0 +1,19 @@
+<style>
+  a {
+    display: block;
+    list-style: none;
+    background-color: rgb(231, 23, 23);
+    color: whitesmoke;
+    width: 4rem;
+    text-align: center;
+    padding: 1rem;
+  }
+</style>
+
+<h2>{{db.title}}</h2>
+<p>{{db.contents}}</p>
+{% if db.main_image %}
+<img src="{{db.main_image.url}}" alt="">
+{% endif %}
+
+<a href="{% url 'memoDelete' db.id %}">삭제</a>

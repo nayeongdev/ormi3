@@ -1,0 +1,16 @@
+<h1>메모</h1>
+<form action="" method="get">
+  <input type="text" name="q">
+  <button type="submit">검색</button>
+</form>
+<ul>
+  {% for memo_detail in db %}
+  <li>
+    <a href="{% url 'memoDetail' memo_detail.id %}">{{memo_detail.title}}</a>
+    <p>{{memo_detail.contents}}</p>
+    {% if db.main_image %}
+    <img src="{{db.main_image.url}}" alt="">
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
