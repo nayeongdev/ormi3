@@ -1,0 +1,198 @@
+# blog > models.py
+# django models fields
+# https://docs.djangoproject.com/en/4.2/ref/models/fields/
+
+from django.db import models
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    contents = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True) # 처음 생성될 때만
+    updated_at = models.DateTimeField(auto_now=True) # 수정될 때마다
+
+###################################
+
+python manage.py makemigrations # 0001_initial.py 파일 생성 => DB를 조작할 수 있는 코드!
+python manage.py migrate # 실제 DB에 반영
+
+###################################
+# admin.py
+from django.contrib import admin
+from .models import Post
+
+admin.site.register(Post)
+
+###################################
+python manage.py createsuperuser
+
+이름, 이메일, 비밀번호 입력
+- 참고로 비밀번호는 보이지 않는다.
+- 정보를 입력해둔 것은 메모해둬야한다.
+###################################
+# admin 들어가서 게시물 3개 작성
+# 필드는 보기 좋게 다듬어주세요.
+
+from django.db import models
+
+class Post(models.Model):
+    ... 생략 ...
+
+    def __str__(self):
+        time = self.created_at.strftime('%Y-%m-%d %H:%M')
+        return f'제목: {self.title}, 시간: {time}'
+
+###################################
+# blog > views.py
+
+from django.shortcuts import render
+from .models import Post
+
+def blog(request):
+    db = Post.objects.all()
+    context = {
+        'db': db,
+    }
+    return render(request, 'blog/blog.html', context)
+
+def post(request, pk):
+    db = Post.objects.get(pk=pk)
+    context = {
+        'db': db,
+    }
+    return render(request, 'blog/post.html', context)
+
+def test(request):
+    return render(request, 'blog/test.txt')
+
+###################################
+# tamplates > blog > blog.html
+
+<h1>게시판</h1>
+<ul>
+    {% for post_detail in db %}
+    <li>
+        <a href="{% url 'post' post_detail.id %}">{{ post_detail.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<p>{% url 'blog' %}</p>
+<p>{% url 'post' 1 %}</p>
+
+###################################
+# tamplates > blog > post.html
+
+<h1>게시판</h1>
+<p>{{db.title}}</p>
+<p>{{db.contents}}</p>
+<p>{{db.updated_at}}</p>
+<a href="{% url 'blog' %}">뒤로가기</a>
+
+###################################
+
+# test 용도의 예제입니다.
+# 이런 코드를 실무에서 사용하지 않습니다.
+
+###################################
+# 게시물 생성
+# blog > urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.blog, name='blog'),
+    path('<int:pk>/', views.post, name='post'),
+    path('test/', views.test, name='test'),
+    path('posttest/<int:pk>/', views.posttest, name='posttest'),
+]
+
+###################################
+# 게시물 생성
+# blog > views.py
+from django.shortcuts import render, redirect
+from .models import Post
+
+def blog(request):
+    db = Post.objects.all()
+    context = {
+        'db': db,
+    }
+    return render(request, 'blog/blog.html', context)
+
+def post(request, pk):
+    db = Post.objects.get(pk=pk)
+    context = {
+        'db': db,
+    }
+    return render(request, 'blog/post.html', context)
+
+def test(request):
+    return render(request, 'blog/test.txt')
+
+def posttest(request, pk):
+    q = Post.objects.create(title=f'{pk}', contents=f'{pk}{pk}')
+    q.save()
+    return redirect('blog')
+
+###################################
+
+http://127.0.0.1:8000/blog/posttest/5
+http://127.0.0.1:8000/blog/posttest/6
+http://127.0.0.1:8000/blog/posttest/7
+
+###################################
+# 게시물 삭제
+# blog > urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.blog, name='blog'),
+    path('<int:pk>/', views.post, name='post'),
+    path('test/', views.test, name='test'),
+    path('posttest/<int:pk>/', views.posttest, name='posttest'),
+    path('postdel/<int:pk>/', views.postdel, name='postdel'),
+]
+
+
+###################################
+# 게시물 삭제
+# blog > views.py
+
+from django.shortcuts import render, redirect
+from .models import Post
+
+def blog(request):
+    db = Post.objects.all()
+    context = {
+        'db': db,
+    }
+    return render(request, 'blog/blog.html', context)
+
+def post(request, pk):
+    db = Post.objects.get(pk=pk)
+    context = {
+        'db': db,
+    }
+    return render(request, 'blog/post.html', context)
+
+def test(request):
+    return render(request, 'blog/test.txt')
+
+def posttest(request, pk):
+    q = Post.objects.create(title=f'{pk}', contents=f'{pk}{pk}')
+    q.save()
+    return redirect('blog')
+
+def postdel(request, pk):
+    q = Post.objects.get(pk=pk)
+    q.delete()
+    return redirect('blog')
+
+###################################
+
+http://127.0.0.1:8000/blog/postdel/5
+http://127.0.0.1:8000/blog/postdel/6
+http://127.0.0.1:8000/blog/postdel/7
