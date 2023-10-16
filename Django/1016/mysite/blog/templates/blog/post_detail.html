@@ -1,0 +1,6 @@
+<h2>{{ object.title }}</h2>
+<p>{{ object.content }}</p>
+<ul>
+  <li><a href="{% url 'edit' object.pk %}">수정</a></li>
+  <li><a href="{% url 'delete' object.pk %}">삭제</a></li>
+</ul>
