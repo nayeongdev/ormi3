@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="data"></div>
+  <script>
+    // fetch로 http://127.0.0.1:8000/blog/ 데이터 가져와서 출력
+    fetch('http://127.0.0.1:8000/blog/')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        document.getElementById('data').innerText = data;
+      })
+  </script>
+</body>
+
+</html>
