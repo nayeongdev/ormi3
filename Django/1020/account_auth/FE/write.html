@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="http://127.0.0.1:8000/blog/login/" method="post">
+    <div>
+      <label for="username">사용자명</label>
+      <input type="text" name="username" id="username">
+    </div>
+    <div>
+      <label for="password">비밀번호</label>
+      <input type="password" name="password" id="password">
+    </div>
+    <input type="submit" value="로그인" id="login">
+  </form>
+  <form action="" method="post">
+    <div>
+      <label for="title">제목</label>
+      <input type="text" name="title" id="title">
+    </div>
+    <div>
+      <label for="content">내용</label>
+      <input type="password" name="content" id="content">
+    </div>
+    <input type="submit" value="게시물 작성" id="write">
+  </form>
+
+  <script>
+    const login = document.getElementById('login');
+    const write = document.getElementById('write');
+    login.addEventListener('click', e => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const data = {
+        username, password
+      }
+
+      fetch('http://127.0.0.1:8000/blog/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          localStorage.setItem('token', data.token)
+        })
+    })
+    write.addEventListener('click', e => {
+      e.preventDefault();
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+      const data = {
+        title, content
+      }
+      console.log(data);
+      const token = localStorage.getItem('token')
+      if (token) {
+        // fetch를 이용해서 서버에 POST 요청을 보낸다.
+        fetch('http://127.0.0.1:8000/blog/', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+          })
+      } else {
+        alert('로그인이 필요합니다.')
+      }
+
+    })
+  </script>
+</body>
+
+</html>

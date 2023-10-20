@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="http://127.0.0.1:8000/blog/login/" method="post">
+    <div>
+      <label for="username">사용자명</label>
+      <input type="text" name="username" id="username">
+    </div>
+    <div>
+      <label for="password">비밀번호</label>
+      <input type="password" name="password" id="password">
+    </div>
+    <input type="submit" value="로그인" id="login">
+  </form>
+
+  <script>
+    const login = document.getElementById('login');
+    login.addEventListener('click', e => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const data = {
+        // username : username,
+        // password : password
+        username, password
+      }
+
+      // form을 없애는 코드
+      // document.querySelector('form').remove();
+      // document.write('환영합니다')
+
+      // /home으로 리다이렉트하는 코드
+      // 리다이렉트가 될때 주의할 점 : 토큰 값은 어딘가에 유지가 되어있어야한다. 로그인을 확인하기 위해.
+      // window.location.href = 'https://~/home'
+
+      // fetch를 이용해서 서버에 POST 요청을 보낸다.
+      fetch('https://127.0.01:8000/blog/login/', {
+        method: 'POST',
+        headers: {
+          'Contet-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      }).then(response => response.json()).then(data => console.log(data))
+    })
+  </script>
+</body>
+
+</html>
